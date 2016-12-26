@@ -38,10 +38,18 @@ if __name__ == '__main__':
 	for i in ["1", "2", "3"]:
 		get_terms(i)
 
-	for t in all_terms[0:7]:
+	for index, t in enumerate(all_terms):
 		term_list = get_term(t)
-		doc.add_heading(term_list[0] + ' :', level=1)
+
+		title = term_list[0].split(',')[0]
+		catg = term_list[0].split(',')[1].strip()
+		content = term_list[1]
+
+
+		doc.add_heading(title + ' :', level=1)
+		doc.add_heading(catg, level=3)
 		doc.add_paragraph(term_list[1])
-		print get_term(t)[0]
+		print str(index) + ' . ' + title
+
 	doc.save('dict_test.docx')
 
